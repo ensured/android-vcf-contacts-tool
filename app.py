@@ -9,15 +9,29 @@ print(
     + "\n"
 )
 
+print("type 'backup' to backup contacts.vcf")
+
 
 def add_contact():
     while True:
         new_contact_num = str(input("Enter phone number: "))
+        if new_contact_num.lower() == "backup":
+            backup()
+        else:
+            break
         if len(new_contact_num) != 10:
             print("Phone number not 10 digits")
             continue
         new_contact_fn = input("Enter first name: ")
+        if new_contact_num.lower() == "backup":
+            backup()
+        else:
+            break
         new_contact_ln = input("Enter first name: ")
+        if new_contact_num.lower() == "backup":
+            backup()
+        else:
+            break
 
         # Formatting phone number to add '_'
         temp = "-".join(
@@ -38,11 +52,6 @@ END:VCARD
             with open("contacts.vcf", "a+") as f:
                 f.write(data)
             print("Added contact.")
-            backup_or_not = input("Would you like to make a quick backup? (y/n): ")
-            if backup_or_not.lower() == "y":
-                backup()
-            else:
-                break
         except:
             print("Couldn't add contact.")
             break
@@ -67,6 +76,7 @@ def backup():
         # copy over the permissions,modification
         shutil.copystat(src, dst)
         print("backed up files to", head)
+        add_contact()
 
 
 if __name__ == "__main__":
