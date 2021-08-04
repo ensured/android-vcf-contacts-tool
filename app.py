@@ -17,7 +17,7 @@ def add_contact():
             print("Phone number not 10 digits")
             continue
         new_contact_fn = input("Enter first name: ")
-        new_contact_ln = input("Enter first name: ")
+        new_contact_ln = input("Enter last name: ")
 
         # Formatting phone number to add '_'
         temp = "-".join(
